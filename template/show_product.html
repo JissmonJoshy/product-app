@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Product</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Product List</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in prod %}
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.pro_name }}</td>
+                    <td>{{ p.pro_price }}</td>
+                    <td>{{ p.pro_quantity }}</td>
+                    <td>
+                        {{ p.pro_image }} <br>
+                        <img src="{{ p.pro_image.url }}" class="w-25" alt="{{ p.pro_name }}">
+                    </td>
+                    <td><a href="{% url 'editpage' p.id %}" class="btn btn-info">Edit</a></td>
+                    <td><a href="{% url 'deletepage' p.id %}" class="btn btn-danger">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        
+        <div class="text-center">
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back to Add Product</a>
+        </div>
+    </div>
+</body>
+</html>
